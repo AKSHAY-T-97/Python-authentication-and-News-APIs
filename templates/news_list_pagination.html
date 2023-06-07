@@ -1,0 +1,50 @@
+<div class="activesuccess" style="color: green; font-size: 24px; padding-left: 100px;"></div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card card-primary" style="width: 100%;">
+            <div class="card-header">
+                <h3 class="card-title" style="padding-top: 50px;">NEWS LIST</h3>
+            </div>
+            <div class="card-body">
+                <div class="form-group">
+                    <table class="table table-striped" style="border-radius: 2; border-color: black;">
+                        <thead>
+                            <tr style="color:">
+                                <th scope="col">Title</th>
+                                <th scope="col">Description</th>
+                                <th scope="col">Publication date</th>
+                                <th scope="col">Author</th>
+                                <th scope="col">Created at</th>
+                            </tr>
+                            {% for i in page_obj %}
+                                <tr>
+                                    <td><b>{{ i.title }}</b></td>
+                                    <td>{{ i.description }}</td>
+                                    <td>{{ i.publication_date }}</td>
+                                    <td>{{ i.author }}</td>
+                                    <td>{{ i.created_at }}</td>
+                                </tr>
+                            {% endfor %}
+                        </thead>
+                    </table>
+                    <div class="pagination">
+                        <span class="step-links">
+                            {% if page_obj.has_previous %}
+                                <a href="?page=1">&laquo; first</a>
+                                <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                            {% endif %}
+                            <span class="current-page">
+                                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                            </span>
+                            {% if page_obj.has_next %}
+                                <a href="?page={{ page_obj.next_page_number }}">next</a>
+                                <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                            {% endif %}
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
